@@ -2,6 +2,7 @@ import Example from "./components/Example";
 import AnotherExample from "./components/AnotherExample";
 import styles from "./App.module.css";
 import ArrayChanger from "./components/Arrays/Array";
+import Home from "../src/components/UserExample";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Example />
       <AnotherExample />;
       <ArrayChanger />
+      <Home />
     </div>
   );
 };
