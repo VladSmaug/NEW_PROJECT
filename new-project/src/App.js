@@ -1,7 +1,7 @@
 import Example from "./components/Example";
-import "./App.css";
+import styles from "./App.module.css";
 
 function App() {
-  <Example />;
+  return <Example />;
 }
 export default App;
