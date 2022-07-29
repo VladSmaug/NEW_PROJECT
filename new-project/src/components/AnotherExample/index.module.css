@@ -1,3 +1,23 @@
 .example {
   display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.example_success {
+  display: flex;
+  background-color: green;
+  width: 200px;
+  align-items: center;
+  margin: 0 auto;
+}
+.example_failure {
+  display: flex;
+  background-color: red;
+  width: 200px;
+  align-items: center;
+  margin: 0 auto;
 }

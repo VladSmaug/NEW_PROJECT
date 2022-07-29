@@ -2,12 +2,22 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 
 const AnotherExample = () => {
-  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(0);
+  function increment() {
+    setCounter(counter + 1);
+  }
+  function decrement() {
+    setCounter(counter - 1);
+  }
   return (
-    <div>
-      <h2>Counter</h2>
-      <button className={styles.example}>Add</button>
-      <button className={styles.example}>Remove</button>
+    <div className={styles.example}>
+      <h2>Counter {counter}</h2>
+      <button onClick={increment} className={styles.example_success}>
+        Add
+      </button>
+      <button onClick={decrement} className={styles.example_failure}>
+        Remove
+      </button>
     </div>
   );
 };
