@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styles } from "";
+import styles from "./index.module.css";
 
 const Example = () => {
   const [count, setCount] = useState(0);

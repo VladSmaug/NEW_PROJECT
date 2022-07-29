@@ -1,3 +1,8 @@
 .example {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
   margin: 0 auto;
 }
