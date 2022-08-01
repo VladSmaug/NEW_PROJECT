@@ -2,7 +2,7 @@ import Example from "./components/Example";
 import AnotherExample from "./components/AnotherExample";
 import styles from "./App.module.css";
 import ArrayChanger from "./components/Arrays/Array";
-import Home from "../src/components/UserExample";
+import Home from "./components/UserInputFormExample";
 
 const App = () => {
   return (
