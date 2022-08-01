@@ -1,23 +1,22 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const FormWithRef = () => {
   const nameInputRef = useRef();
   const surnameInputRef = useRef();
   const ageInputRef = useRef();
-  const sexInputRef = useRef();
+  const [sex, setSex] = useState("");
 
   function submitHandler(e) {
     e.preventDefault();
     const enteredName = nameInputRef.current.value;
     const enteredSurname = surnameInputRef.current.value;
     const enteredAge = ageInputRef.current.value;
-    const enteredSex = sexInputRef.current.value;
 
     const userInfo = {
       name: enteredName,
       surname: enteredSurname,
       age: enteredAge,
-      sex: enteredSex,
+      sex: sex,
     };
 
     console.log(userInfo);
@@ -33,9 +32,19 @@ const FormWithRef = () => {
         <input type="number" id="age" ref={ageInputRef} />
         <div>
           <label htmlFor="sex">Male</label>
-          <input id="sex" type="radio" name="sex" ref={sexInputRef} />
+          <input
+            id="sex"
+            type="radio"
+            name="sex"
+            onChange={() => setSex("Male")}
+          />
           <label htmlFor="sex">Female</label>
-          <input id="sex" type="radio" name="sex" ref={sexInputRef} />
+          <input
+            id="sex"
+            type="radio"
+            name="sex"
+            onChange={() => setSex("Female")}
+          />
         </div>
       </div>
       <div>
