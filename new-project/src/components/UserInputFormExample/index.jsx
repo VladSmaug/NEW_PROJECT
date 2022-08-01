@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Home() {
+export default function FormWithHook() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [age, setAge] = useState("");

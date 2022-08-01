@@ -1,8 +1,10 @@
 import Example from "./components/Example";
 import AnotherExample from "./components/AnotherExample";
-import styles from "./App.module.css";
 import ArrayChanger from "./components/Arrays/Array";
-import Home from "./components/UserInputFormExample";
+import FormWithHook from "./components/UserInputFormExample";
+import FormWithRef from "./components/UserInputFormExampleRef";
+
+import styles from "./App.module.css";
 
 const App = () => {
   return (
@@ -10,7 +12,8 @@ const App = () => {
       <Example />
       <AnotherExample />;
       <ArrayChanger />
-      <Home />
+      <FormWithHook />
+      <FormWithRef />
     </div>
   );
 };
