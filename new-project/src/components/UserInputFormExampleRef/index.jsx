@@ -1,22 +1,18 @@
 import React, { useRef, useState } from "react";
 
 const FormWithRef = () => {
-  const nameInputRef = useRef();
-  const surnameInputRef = useRef();
-  const ageInputRef = useRef();
   const [sex, setSex] = useState("");
 
   function submitHandler(e) {
+    const { name, surname, age } = e.target;
+    console.log(e.target.name);
     e.preventDefault();
-    const enteredName = nameInputRef.current.value;
-    const enteredSurname = surnameInputRef.current.value;
-    const enteredAge = ageInputRef.current.value;
 
     const userInfo = {
-      name: enteredName,
-      surname: enteredSurname,
-      age: enteredAge,
-      sex: sex,
+      name: name.value,
+      surname: surname.value,
+      age: age.value,
+      sex,
     };
 
     console.log(userInfo);
@@ -25,11 +21,11 @@ const FormWithRef = () => {
     <form onSubmit={submitHandler}>
       <div>
         <label htmlFor="name">Name</label>
-        <input type="text" required id="name" ref={nameInputRef} />
+        <input type="text" required id="name" />
         <label htmlFor="surname">Surname</label>
-        <input type="text" required id="surname" ref={surnameInputRef} />
+        <input type="text" required id="surname" />
         <label htmlFor="age">Age</label>
-        <input type="number" id="age" ref={ageInputRef} />
+        <input type="number" id="age" />
         <div>
           <label htmlFor="sex">Male</label>
           <input
@@ -48,7 +44,7 @@ const FormWithRef = () => {
         </div>
       </div>
       <div>
-        <button>Add Meetup</button>
+        <button>Submit</button>
       </div>
     </form>
   );
