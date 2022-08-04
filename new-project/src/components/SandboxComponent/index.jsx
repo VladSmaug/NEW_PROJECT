@@ -5,18 +5,19 @@ const User = () => {
 
   useEffect(() => {
     document.title = `Привет ${name}`;
-  });
+  }, [name]);
 
-  function changeName(event) {
-    setName(event.target.value);
-  }
+  const changeName = (event) => {
+    const value = event.target.value;
+    setName(value);
+  };
   return (
     <div>
       <h3>Имя: {name}</h3>
 
       <div>
         <p>
-          Имя: <input type="text" value={name} onChange={changeName} />
+          Имя: <input type="text" onBlur={changeName} />
         </p>
       </div>
     </div>
