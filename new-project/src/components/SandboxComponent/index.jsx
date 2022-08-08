@@ -1,15 +1,16 @@
-import React from "react";
-import { useState, useEffect, useCallback, Component } from "react";
+import { React, useState, useEffect, useCallback, Component } from "react";
 
 const User = () => {
+  const [count, setCount] = useState(0);
+
   const [numbers, setNumbers] = useState([1, 2, 3]);
 
   const addNumber = () => {
     const randomNumber = Math.round(Math.random() * 10);
+
     const newArr = [...numbers, randomNumber];
     setNumbers(newArr);
   };
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     console.log("component was rendered");
@@ -20,12 +21,8 @@ const User = () => {
   });
 
   useEffect(() => {
-    console.log("count was changed");
-  }, [count]);
-
-  useEffect(() => {
-    console.log("number was changed");
-  }, [numbers]);
+    console.log("count / number was changed");
+  }, [count, numbers]);
 
   useEffect(() => {
     console.log("Component was uploaded");
@@ -33,6 +30,7 @@ const User = () => {
       console.log("will unmount");
     };
   }, []);
+
   return (
     <div>
       <h1>{count}</h1>
