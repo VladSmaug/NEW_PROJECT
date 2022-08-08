@@ -1,27 +1,49 @@
-import { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect, useCallback, Component } from "react";
 
-const User = () => {
-  const [name, setName] = useState("Tom");
+// const User = () => {
+//   const [numbers, setNumbers] = useState([1, 2, 3]);
 
-  useEffect(() => {
-    document.title = `Привет ${name}`;
-  }, [name]);
+//   const addNumber = () => {
+//     const randomNumber = Math.round(Math.random() * 10);
+//     const newArr = [...numbers, randomNumber];
+//     setNumbers(newArr);
+//   };
+//   return (
+//     <div>
+//       <ul>
+//         {numbers.map((num, index) => (
+//           <li key={index}>{num}</li>
+//         ))}
+//       </ul>
+//       <button onClick={addNumber}>New number</button>
+//     </div>
+//   );
+// };
 
-  const changeName = (event) => {
-    const value = event.target.value;
-    setName(value);
+// export default User;
+
+class User extends Component {
+  state = {
+    numbers: [1, 2, 3],
   };
-  return (
-    <div>
-      <h3>Имя: {name}</h3>
-
+  addRandomNumber = () => {
+    const randomNumber = Math.round(Math.random() * 100);
+    this.setState({
+      numbers: [...this.state.numbers, randomNumber],
+    });
+  };
+  render() {
+    return (
       <div>
-        <p>
-          Имя: <input type="text" onBlur={changeName} />
-        </p>
+        <ul>
+          {this.state.numbers.map((num, index) => (
+            <li key={index}>{num}</li>
+          ))}
+        </ul>
+        <button onClick={this.addRandomNumber}>New number</button>
       </div>
-    </div>
-  );
-};
-
+    );
+  }
+}
 export default User;
