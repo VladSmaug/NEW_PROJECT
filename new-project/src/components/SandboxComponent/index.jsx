@@ -33,6 +33,13 @@ class User extends Component {
       numbers: [...this.state.numbers, randomNumber],
     });
   };
+
+  componentDidMount() {
+    console.log("Component was uploaded");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps, prevState, this.props, this.state);
+  }
   render() {
     return (
       <div>

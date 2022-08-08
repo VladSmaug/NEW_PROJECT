@@ -6,8 +6,13 @@ import FormWithRef from "./components/UserInputFormExampleRef";
 import User from "./components/SandboxComponent";
 
 import styles from "./App.module.css";
+import { useState } from "react";
 
 const App = () => {
+  const [visibleUser, setVisibleUser] = useState(true);
+  const toogleVisibleUser = () => {
+    setVisibleUser((visible) => !visible);
+  };
   return (
     <div>
       <Example />
@@ -15,7 +20,8 @@ const App = () => {
       <ArrayChanger />
       <FormWithHook />
       <FormWithRef />
-      <User />
+      {visibleUser && <User />}
+      <button onClick={toogleVisibleUser}>Show / Hide</button>
     </div>
   );
 };
