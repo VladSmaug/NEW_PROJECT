@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
+import styles from "./index.module.css";
+
 const FormWithRef = () => {
   const [sex, setSex] = useState("");
 
   function submitHandler(e) {
+    e.preventDefault();
     const { name, surname, age } = e.target;
     console.log(e.target.name);
-    e.preventDefault();
 
     const userInfo = {
       name: name.value,
@@ -17,9 +19,11 @@ const FormWithRef = () => {
 
     console.log(userInfo);
   }
+
   return (
     <form onSubmit={submitHandler}>
-      <div>
+      <div className={styles.form}>
+        <h2>Input #2</h2>
         <label htmlFor="name">Name</label>
         <input type="text" required id="name" />
         <label htmlFor="surname">Surname</label>
@@ -41,10 +45,10 @@ const FormWithRef = () => {
             name="sex"
             onChange={() => setSex("Female")}
           />
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </div>
-      </div>
-      <div>
-        <button>Submit</button>
       </div>
     </form>
   );

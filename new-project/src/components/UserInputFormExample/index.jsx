@@ -1,63 +1,79 @@
 import { useState } from "react";
 
-export default function FormWithHook() {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [age, setAge] = useState("");
-  const [sex, setSex] = useState("");
+import styles from "./index.module.css";
 
+const Comp = () => {
+  const [state, setState] = useState({
+    name: "",
+    surname: "",
+    age: "",
+    sex: "",
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      name,
-      surname,
-      age,
-      sex,
-    };
-    console.log(data);
+    console.log(state);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const sexChange = (e) => {
+    const { name, id } = e.target;
+    console.log(e.target);
+    setState((prevState) => ({
+      ...prevState,
+      [name]: id,
+    }));
   };
 
   return (
-    <div>
-      <main>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            id="name"
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <label htmlFor="surname">Surname</label>
-          <input
-            id="surname"
-            type="text"
-            onChange={(e) => setSurname(e.target.value)}
-          />
-          <label htmlFor="Age">Age:</label>
-          <input
-            id="message"
-            type="number"
-            onChange={(e) => setAge(e.target.value)}
-          />
-          <div>
-            <label htmlFor="sex">Male</label>
-            <input
-              id="sex"
-              type="radio"
-              name="sex"
-              onChange={() => setSex("Male")}
-            />
-            <label htmlFor="sex">Female</label>
-            <input
-              id="sex"
-              type="radio"
-              name="sex"
-              onChange={() => setSex("Female")}
-            />
-          </div>
-          <button type="submit">Send</button>
-        </form>
-      </main>
-    </div>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <h2>Input #1</h2>
+      <label htmlFor="name">Name:</label>
+      <input
+        value={state.name}
+        type="text"
+        onChange={handleChange}
+        name="name"
+      />
+      <label htmlFor="surname">Surname</label>
+      <input
+        value={state.surname}
+        type="text"
+        onChange={handleChange}
+        name="surname"
+      />
+      <label htmlFor="Age">Age:</label>
+      <input
+        value={state.age}
+        type="number"
+        onChange={handleChange}
+        name="age"
+      />
+      <div className={styles.malefemale}>
+        <label htmlFor="sex">Male</label>
+        <input
+          value={state.sex}
+          type="radio"
+          onChange={sexChange}
+          name="sex"
+          id="Male"
+        />
+        <label htmlFor="sex">Female</label>
+        <input
+          value={state.sex}
+          type="radio"
+          onChange={sexChange}
+          name="sex"
+          id="Female"
+        />
+      </div>
+      <button type="submit">Send</button>
+    </form>
   );
-}
+};
+export default Comp;

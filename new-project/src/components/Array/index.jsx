@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-const ArrayChanger = () => {
-  const initialState = [
-    { id: 1, title: "Title1", text: "Text1", likes: 0 },
-    { id: 2, title: "Title2", text: "Text2", likes: 1 },
-    { id: 3, title: "Title3", text: "Text3", likes: 2 },
-  ];
+import styles from "./index.module.css";
 
+const initialState = [
+  { id: 1, title: "Post #1", text: "lorem", likes: 0 },
+  { id: 2, title: "Post #2", text: "lorem", likes: 1 },
+  { id: 3, title: "Post #3", text: "lorem", likes: 2 },
+];
+
+const ArrayChanger = () => {
   const [posts, setPosts] = useState(initialState);
 
   const likeHandler = (id) => {
@@ -22,10 +24,10 @@ const ArrayChanger = () => {
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       Posts:
       {posts.map(({ id, title, text, likes }) => (
-        <div key={id}>
+        <div key={id} className={styles.post}>
           <h1>{title}</h1>
           <h3>{text}</h3>
           <button onClick={() => likeHandler(id)}>Likes: {likes}</button>

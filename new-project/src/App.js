@@ -1,7 +1,7 @@
-import Example from "./components/Example";
-import AnotherExample from "./components/AnotherExample";
-import ArrayChanger from "./components/Arrays/Array";
-import FormWithHook from "./components/UserInputFormExample";
+import Counter from "./components/Counter";
+import AnotherCounter from "./components/AnotherCounter";
+import ArrayChanger from "./components/Array";
+import Comp from "./components/UserInputFormExample";
 import FormWithRef from "./components/UserInputFormExampleRef";
 import User from "./components/SandboxComponent";
 
@@ -14,14 +14,16 @@ const App = () => {
     setVisibleUser((visible) => !visible);
   };
   return (
-    <div>
-      <Example />
-      <AnotherExample />;
+    <div className={styles.wrapper}>
+      <Counter />
+      <AnotherCounter />;
       <ArrayChanger />
-      <FormWithHook />
+      <Comp />
       <FormWithRef />
       {visibleUser && <User />}
-      <button onClick={toogleVisibleUser}>Show / Hide</button>
+      <button className={styles.showhide} onClick={toogleVisibleUser}>
+        Show / Hide
+      </button>
     </div>
   );
 };

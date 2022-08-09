@@ -1,4 +1,6 @@
-import { React, useState, useEffect, useCallback, Component } from "react";
+import { React, useState, useEffect } from "react";
+
+import styles from "./index.module.css";
 
 const User = () => {
   const [count, setCount] = useState(0);
@@ -26,14 +28,16 @@ const User = () => {
 
   useEffect(() => {
     console.log("Component was uploaded");
+
     return () => {
-      console.log("will unmount");
+      console.log("Will unmount");
     };
   }, []);
 
   return (
-    <div>
-      <h1>{count}</h1>
+    <div className={styles.wrapper}>
+      <h2>Counter unit</h2>
+      <h3>{count}</h3>
       <button onClick={() => setCount(count + 1)}>+</button>
       <ul>
         {numbers.map((num, index) => (
