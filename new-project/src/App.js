@@ -1,25 +1,30 @@
-import logo from "./logo.svg";
-import "./App.css";
+import Counter from "./components/Counter";
+import AnotherCounter from "./components/AnotherCounter";
+import ArrayChanger from "./components/Array";
+import Comp from "./components/UserInputFormExample";
+import FormWithRef from "./components/UserInputFormExampleRef";
+import User from "./components/SandboxComponent";
 
-function App() {
+import styles from "./App.module.css";
+import { useState } from "react";
+
+const App = () => {
+  const [visibleUser, setVisibleUser] = useState(true);
+  const toogleVisibleUser = () => {
+    setVisibleUser((visible) => !visible);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.wrapper}>
+      <Counter />
+      <AnotherCounter />;
+      <ArrayChanger />
+      <Comp />
+      <FormWithRef />
+      {visibleUser && <User />}
+      <button className={styles.showhide} onClick={toogleVisibleUser}>
+        Show / Hide
+      </button>
     </div>
   );
-}
-
+};
 export default App;
