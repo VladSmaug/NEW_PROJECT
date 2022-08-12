@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     filterHandler();
-  }, [status]);
+  }, [todos, status]);
 
   const filterHandler = () => {
     switch (status) {
@@ -40,7 +40,6 @@ const App = () => {
           setTodos={setTodos}
           todos={todos}
           setStatus={setStatus}
-          filteredTodos={filteredTodos}
         />
         <TodoList
           filteredTodos={filteredTodos}
