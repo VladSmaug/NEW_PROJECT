@@ -12,13 +12,13 @@ const App = () => {
   const [filteredTodos, setFilteredTodos] = useState([]);
 
   useEffect(() => {
-    getLocalTodos();
-  }, []);
-
-  useEffect(() => {
     filterHandler();
     saveLocalTodos();
   }, [todos, status]);
+
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
 
   const filterHandler = () => {
     switch (status) {
