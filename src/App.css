@@ -22,6 +22,7 @@ header,
 form {
   min-height: 20vh;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -71,7 +72,8 @@ form button:hover {
 }
 
 .trash-btn,
-.complete-btn {
+.complete-btn,
+.edit-btn {
   background: red;
   color: white;
   border: none;
@@ -81,6 +83,9 @@ form button:hover {
 }
 .complete-btn {
   background: green;
+}
+.edit-btn {
+  background: blue;
 }
 .todo-item {
   padding: 0rem 0.5rem;
@@ -141,4 +146,9 @@ select {
 .select:hover::after {
   background: rgba(255, 211, 145, 1);
   color: white;
+}
+.timer {
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid black;
 }
