@@ -10,6 +10,7 @@ const App = () => {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [inputDate, setInputDate] = useState("");
 
   useEffect(() => {
     filterHandler();
@@ -33,6 +34,7 @@ const App = () => {
         break;
     }
   };
+
   //save to local
   const saveLocalTodos = () => {
     if (localStorage.setItem("todos", JSON.stringify(todos)));
@@ -50,7 +52,7 @@ const App = () => {
   return (
     <div className="app">
       <header>
-        <h1>ToDo List </h1>
+        <h1>My ToDo List </h1>
       </header>
       <div>
         <Form
@@ -59,11 +61,14 @@ const App = () => {
           setTodos={setTodos}
           todos={todos}
           setStatus={setStatus}
+          setInputDate={setInputDate}
+          inputDate={inputDate}
         />
         <TodoList
           filteredTodos={filteredTodos}
           setTodos={setTodos}
           todos={todos}
+          inputDate={inputDate}
         />
       </div>
     </div>

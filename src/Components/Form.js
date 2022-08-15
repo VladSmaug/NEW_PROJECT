@@ -1,10 +1,23 @@
 import React from "react";
 
 import ".././App.css";
-const Form = ({ inputText, setInputText, setTodos, todos, setStatus }) => {
+const Form = ({
+  inputText,
+  setInputText,
+  setTodos,
+  todos,
+  setStatus,
+  inputDate,
+  setInputDate,
+}) => {
   const inputTextHandler = (e) => {
     console.log(e.target.value);
     setInputText(e.target.value);
+  };
+
+  const inputDateHandler = (e) => {
+    console.log(e.target.value);
+    setInputDate(e.target.value);
   };
 
   const submitTodoHandler = (e) => {
@@ -27,6 +40,11 @@ const Form = ({ inputText, setInputText, setTodos, todos, setStatus }) => {
         onChange={inputTextHandler}
         type="text"
         className="todo-input"
+      />
+      <input
+        type="datetime-local"
+        onChange={inputDateHandler}
+        value={inputDate}
       />
       <button onClick={submitTodoHandler} className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
