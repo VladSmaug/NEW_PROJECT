@@ -11,6 +11,8 @@ const App = () => {
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [inputDate, setInputDate] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentTodo, setCurrentTodo] = useState({});
 
   useEffect(() => {
     filterHandler();
@@ -63,12 +65,17 @@ const App = () => {
           setStatus={setStatus}
           setInputDate={setInputDate}
           inputDate={inputDate}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          currentTodo={currentTodo}
+          setCurrentTodo={setCurrentTodo}
         />
         <TodoList
           filteredTodos={filteredTodos}
           setTodos={setTodos}
           todos={todos}
           inputDate={inputDate}
+          setCurrentTodo={setCurrentTodo}
         />
       </div>
     </div>

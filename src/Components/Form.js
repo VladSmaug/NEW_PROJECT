@@ -1,6 +1,7 @@
-import React from "react";
+import { React, useState } from "react";
 
 import ".././App.css";
+
 const Form = ({
   inputText,
   setInputText,
@@ -9,6 +10,10 @@ const Form = ({
   setStatus,
   inputDate,
   setInputDate,
+  isEditing,
+  setIsEditing,
+  currentTodo,
+  setCurrentTodo,
 }) => {
   const inputTextHandler = (e) => {
     console.log(e.target.value);
@@ -33,7 +38,28 @@ const Form = ({
     setStatus(e.target.value);
   };
 
-  return (
+  return isEditing ? (
+    <form>
+      <input
+        name="editTodo"
+        type="text"
+        placeholder="Edit todo"
+        value={currentTodo.text}
+        onChange={}
+      />
+      <input
+        type="date"
+        onChange={inputDateHandler}
+        value={inputDate}
+        className="todo-input"
+      />
+      <button onClick={submitTodoHandler} className="todo-button" type="submit">
+        <i className="fas fa-plus-square"></i>
+      </button>
+      <button type="submit">Update</button>
+      <button onClick={() => setIsEditing(false)}>Cancel</button>
+    </form>
+  ) : (
     <form>
       <input
         value={inputText}
@@ -42,7 +68,7 @@ const Form = ({
         className="todo-input"
       />
       <input
-        type="datetime-local"
+        type="date"
         onChange={inputDateHandler}
         value={inputDate}
         className="todo-input"
