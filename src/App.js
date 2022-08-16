@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Form from "./Components/Form";
 import TodoList from "./Components/Todolist";
@@ -13,15 +13,6 @@ const App = () => {
   const [inputDate, setInputDate] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
-
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
-  }, [todos, status]);
-
-  useEffect(() => {
-    getLocalTodos();
-  }, []);
 
   const filterHandler = () => {
     switch (status) {
@@ -39,17 +30,28 @@ const App = () => {
 
   //save to local
   const saveLocalTodos = () => {
-    if (localStorage.setItem("todos", JSON.stringify(todos)));
+    if (todos.length) {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
   };
 
   const getLocalTodos = () => {
     if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      setTodos(todoLocal);
+      return;
     }
+
+    const todoLocal = JSON.parse(localStorage.getItem("todos"));
+    setTodos(todoLocal);
   };
+
+  useEffect(() => {
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
+
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
 
   return (
     <div className="app">
