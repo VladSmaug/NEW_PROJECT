@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 
 import ".././App.css";
 
@@ -13,7 +13,6 @@ const Form = ({
   isEditing,
   setIsEditing,
   currentTodo,
-  setCurrentTodo,
 }) => {
   const inputTextHandler = (e) => {
     console.log(e.target.value);
@@ -45,7 +44,6 @@ const Form = ({
         type="text"
         placeholder="Edit todo"
         value={currentTodo.text}
-        onChange={}
       />
       <input
         type="date"
