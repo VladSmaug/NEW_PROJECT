@@ -2,34 +2,70 @@ import React from "react";
 
 import Timer from "./Timer";
 
-const Todo = ({ text, setTodos, todos, todo, inputDate, setCurrentTodo }) => {
+const Todo = ({ name, setTodos, todos, todo, setCurrentTodo, currentTodo }) => {
+  const isItemEdit = currentTodo.id === todo.id;
+
   const deleteHandler = () => {
-    setTodos(todos.filter((el) => el.id !== todo.id));
+    const todosCopy = [...todos];
+    const changedTodos = todosCopy.filter((el) => el.id !== todo.id);
+
+    setTodos(changedTodos);
   };
+
   const completeHandler = () => {
-    setTodos(
-      todos.map((el) => {
-        if (el.id === todo.id) {
-          return { ...el, completed: !el.completed };
+    const todosCopy = [...todos];
+    const changedTodos = todosCopy.map((el) => {
+      if (el.id === todo.id) {
+        return { ...el, completed: !el.completed };
+      }
+      return el;
+    });
+
+    setTodos(changedTodos);
+  };
+
+  const handleEditClick = () => {
+    if (isItemEdit) {
+      const todosCopy = [...todos];
+      // find index of the editable item
+      const todoId = todosCopy.findIndex((item) => {
+        if (item.id === currentTodo.id) {
+          return item;
         }
-        return el;
-      })
-    );
+      });
+
+      // change object of the editable item in the array
+      todosCopy.splice(todoId, 1, currentTodo);
+      // need to off edit mode for the currentTodo item before we return from function(check isItemEdit variable)
+      setCurrentTodo({});
+
+      return setTodos(todosCopy);
+    }
+
+    setCurrentTodo(todo);
   };
 
   const handleEditInputChange = (e) => {
-    setCurrentTodo({ ...todos, text: e.target.value });
-    console.log(todos);
+    const value = e.target.value;
+    setCurrentTodo((prev) => ({ ...prev, name: value }));
   };
 
   return (
     <div className="todo">
       <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
-        {text}
+        {isItemEdit ? (
+          <input
+            type="text"
+            value={currentTodo.name}
+            onChange={handleEditInputChange}
+          />
+        ) : (
+          name
+        )}
         <hr />
-        Should be done until: {inputDate}
+        Should be done until: {todo.date}
         <hr />
-        Remaining time: <Timer inputDate={inputDate} />
+        Remaining time: <Timer inputDate={todo.date} />
       </li>
       <button onClick={completeHandler} className="complete-btn">
         <i className="fas fa-check"></i>
@@ -37,7 +73,7 @@ const Todo = ({ text, setTodos, todos, todo, inputDate, setCurrentTodo }) => {
       <button onClick={deleteHandler} className="trash-btn">
         <i className="fas fa-trash"></i>
       </button>
-      <button onClick={handleEditInputChange} className="edit-btn">
+      <button onClick={handleEditClick} className="edit-btn">
         <i className="fas fa-edit"></i>
       </button>
     </div>

@@ -1,68 +1,36 @@
-import { React, useState } from "react";
+import { React } from "react";
 
-import ".././App.css";
+import { defaultTodo } from "../utils/constants";
 
-const Form = ({
-  inputText,
-  setInputText,
-  setTodos,
-  todos,
-  setStatus,
-  inputDate,
-  setInputDate,
-  isEditing,
-  setIsEditing,
-  currentTodo,
-  setCurrentTodo,
-}) => {
+const Form = ({ setTodos, todos, setStatus, newTodo, setNewTodo }) => {
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
-    setInputText(e.target.value);
+    const value = e.target.value;
+
+    setNewTodo((prev) => ({ ...prev, name: value }));
   };
 
   const inputDateHandler = (e) => {
-    console.log(e.target.value);
-    setInputDate(e.target.value);
+    const value = e.target.value;
+
+    setNewTodo((prev) => ({ ...prev, date: value }));
   };
 
   const submitTodoHandler = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
-    setInputText("");
+    const date = new Date(newTodo.date).toDateString();
+
+    setTodos([...todos, { ...newTodo, date: date, id: Math.random() * 1000 }]);
+    setNewTodo(defaultTodo);
   };
 
   const statusHandler = (e) => {
     setStatus(e.target.value);
   };
 
-  return isEditing ? (
+  return (
     <form>
       <input
-        name="editTodo"
-        type="text"
-        placeholder="Edit todo"
-        value={currentTodo.text}
-        onChange={}
-      />
-      <input
-        type="date"
-        onChange={inputDateHandler}
-        value={inputDate}
-        className="todo-input"
-      />
-      <button onClick={submitTodoHandler} className="todo-button" type="submit">
-        <i className="fas fa-plus-square"></i>
-      </button>
-      <button type="submit">Update</button>
-      <button onClick={() => setIsEditing(false)}>Cancel</button>
-    </form>
-  ) : (
-    <form>
-      <input
-        value={inputText}
+        value={newTodo.name}
         onChange={inputTextHandler}
         type="text"
         className="todo-input"
@@ -70,7 +38,7 @@ const Form = ({
       <input
         type="date"
         onChange={inputDateHandler}
-        value={inputDate}
+        value={newTodo.date}
         className="todo-input"
       />
       <button onClick={submitTodoHandler} className="todo-button" type="submit">

@@ -1,27 +1,19 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Form from "./Components/Form";
 import TodoList from "./Components/Todolist";
+import { defaultTodo } from "./utils/constants";
 
 import "./App.css";
 
 const App = () => {
-  const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState([]);
+  const todosFromStorage = JSON.parse(localStorage.getItem("todos")) || [];
+
+  const [newTodo, setNewTodo] = useState(defaultTodo);
+  const [todos, setTodos] = useState(todosFromStorage);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [inputDate, setInputDate] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
-
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
-  }, [todos, status]);
-
-  useEffect(() => {
-    getLocalTodos();
-  }, []);
 
   const filterHandler = () => {
     switch (status) {
@@ -39,17 +31,13 @@ const App = () => {
 
   //save to local
   const saveLocalTodos = () => {
-    if (localStorage.setItem("todos", JSON.stringify(todos)));
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
-  const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      setTodos(todoLocal);
-    }
-  };
+  useEffect(() => {
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
 
   return (
     <div className="app">
@@ -58,23 +46,17 @@ const App = () => {
       </header>
       <div>
         <Form
-          inputText={inputText}
-          setInputText={setInputText}
           setTodos={setTodos}
           todos={todos}
           setStatus={setStatus}
-          setInputDate={setInputDate}
-          inputDate={inputDate}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          currentTodo={currentTodo}
-          setCurrentTodo={setCurrentTodo}
+          newTodo={newTodo}
+          setNewTodo={setNewTodo}
         />
         <TodoList
           filteredTodos={filteredTodos}
           setTodos={setTodos}
           todos={todos}
-          inputDate={inputDate}
+          currentTodo={currentTodo}
           setCurrentTodo={setCurrentTodo}
         />
       </div>
