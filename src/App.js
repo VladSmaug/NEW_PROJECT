@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import Form from "./Components/Form";
 import TodoList from "./Components/Todolist";
+import { defaultTodo } from "./utils/constants";
 
 import "./App.css";
 
 const App = () => {
-  const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState([]);
+  const todosFromStorage = JSON.parse(localStorage.getItem("todos")) || [];
+
+  const [newTodo, setNewTodo] = useState(defaultTodo);
+  const [todos, setTodos] = useState(todosFromStorage);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [inputDate, setInputDate] = useState("");
   const [currentTodo, setCurrentTodo] = useState({});
 
   const filterHandler = () => {
@@ -29,28 +31,13 @@ const App = () => {
 
   //save to local
   const saveLocalTodos = () => {
-    if (todos.length) {
-      localStorage.setItem("todos", JSON.stringify(todos));
-    }
-  };
-
-  const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      return;
-    }
-
-    const todoLocal = JSON.parse(localStorage.getItem("todos"));
-    setTodos(todoLocal);
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
   useEffect(() => {
     filterHandler();
     saveLocalTodos();
   }, [todos, status]);
-
-  useEffect(() => {
-    getLocalTodos();
-  }, []);
 
   return (
     <div className="app">
@@ -59,19 +46,16 @@ const App = () => {
       </header>
       <div>
         <Form
-          inputText={inputText}
-          setInputText={setInputText}
           setTodos={setTodos}
           todos={todos}
           setStatus={setStatus}
-          setInputDate={setInputDate}
-          inputDate={inputDate}
+          newTodo={newTodo}
+          setNewTodo={setNewTodo}
         />
         <TodoList
           filteredTodos={filteredTodos}
           setTodos={setTodos}
           todos={todos}
-          inputDate={inputDate}
           currentTodo={currentTodo}
           setCurrentTodo={setCurrentTodo}
         />
