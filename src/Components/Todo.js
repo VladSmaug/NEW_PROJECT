@@ -47,7 +47,7 @@ const Todo = ({ name, setTodos, todos, todo, setCurrentTodo, currentTodo }) => {
 
   const handleEditInputChange = (e) => {
     const value = e.target.value;
-    setCurrentTodo((prev) => ({ ...prev, text: value }));
+    setCurrentTodo((prev) => ({ ...prev, name: value }));
   };
 
   return (
@@ -56,7 +56,7 @@ const Todo = ({ name, setTodos, todos, todo, setCurrentTodo, currentTodo }) => {
         {isItemEdit ? (
           <input
             type="text"
-            value={currentTodo.text}
+            value={currentTodo.name}
             onChange={handleEditInputChange}
           />
         ) : (

@@ -19,7 +19,7 @@ const Form = ({ setTodos, todos, setStatus, newTodo, setNewTodo }) => {
     e.preventDefault();
     const date = new Date(newTodo.date).toDateString();
 
-    setTodos([...todos, { ...newTodo, date: date }]);
+    setTodos([...todos, { ...newTodo, date: date, id: Math.random() * 1000 }]);
     setNewTodo(defaultTodo);
   };
 
