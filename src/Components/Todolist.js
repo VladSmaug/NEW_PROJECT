@@ -7,6 +7,7 @@ const TodoList = ({
   setTodos,
   filteredTodos,
   inputDate,
+  currentTodo,
   setCurrentTodo,
 }) => {
   return (
@@ -20,6 +21,7 @@ const TodoList = ({
             key={todo.id}
             todo={todo}
             inputDate={inputDate}
+            currentTodo={currentTodo}
             setCurrentTodo={setCurrentTodo}
           />
         ))}

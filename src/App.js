@@ -77,6 +77,7 @@ const App = () => {
           setTodos={setTodos}
           todos={todos}
           inputDate={inputDate}
+          currentTodo={currentTodo}
           setCurrentTodo={setCurrentTodo}
         />
       </div>
