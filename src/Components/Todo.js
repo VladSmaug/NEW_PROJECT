@@ -2,15 +2,7 @@ import React from "react";
 
 import Timer from "./Timer";
 
-const Todo = ({
-  text,
-  setTodos,
-  todos,
-  todo,
-  inputDate,
-  setCurrentTodo,
-  currentTodo,
-}) => {
+const Todo = ({ name, setTodos, todos, todo, setCurrentTodo, currentTodo }) => {
   const isItemEdit = currentTodo.id === todo.id;
 
   const deleteHandler = () => {
@@ -68,12 +60,12 @@ const Todo = ({
             onChange={handleEditInputChange}
           />
         ) : (
-          text
+          name
         )}
         <hr />
-        Should be done until: {inputDate}
+        Should be done until: {todo.date}
         <hr />
-        Remaining time: <Timer inputDate={inputDate} />
+        Remaining time: <Timer inputDate={todo.date} />
       </li>
       <button onClick={completeHandler} className="complete-btn">
         <i className="fas fa-check"></i>
