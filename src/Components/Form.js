@@ -10,9 +10,6 @@ const Form = ({
   setStatus,
   inputDate,
   setInputDate,
-  isEditing,
-  setIsEditing,
-  currentTodo,
 }) => {
   const inputTextHandler = (e) => {
     console.log(e.target.value);
@@ -37,27 +34,7 @@ const Form = ({
     setStatus(e.target.value);
   };
 
-  return isEditing ? (
-    <form>
-      <input
-        name="editTodo"
-        type="text"
-        placeholder="Edit todo"
-        value={currentTodo.text}
-      />
-      <input
-        type="date"
-        onChange={inputDateHandler}
-        value={inputDate}
-        className="todo-input"
-      />
-      <button onClick={submitTodoHandler} className="todo-button" type="submit">
-        <i className="fas fa-plus-square"></i>
-      </button>
-      <button type="submit">Update</button>
-      <button onClick={() => setIsEditing(false)}>Cancel</button>
-    </form>
-  ) : (
+  return (
     <form>
       <input
         value={inputText}
