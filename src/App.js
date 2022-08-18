@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import Form from "./Components/Form";
 import TodoList from "./Components/Todolist";
-import { defaultTodo } from "./utils/constants";
 
 import "./App.css";
 
 const App = () => {
   const todosFromStorage = JSON.parse(localStorage.getItem("todos")) || [];
 
-  const [newTodo, setNewTodo] = useState(defaultTodo);
   const [todos, setTodos] = useState(todosFromStorage);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
@@ -45,13 +43,7 @@ const App = () => {
         <h1>My ToDo List </h1>
       </header>
       <div>
-        <Form
-          setTodos={setTodos}
-          todos={todos}
-          setStatus={setStatus}
-          newTodo={newTodo}
-          setNewTodo={setNewTodo}
-        />
+        <Form setTodos={setTodos} todos={todos} setStatus={setStatus} />
         <TodoList
           filteredTodos={filteredTodos}
           setTodos={setTodos}
