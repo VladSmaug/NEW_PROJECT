@@ -55,6 +55,7 @@ const Todo = ({ name, setTodos, todos, todo, setCurrentTodo, currentTodo }) => {
       <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
         {isItemEdit ? (
           <input
+            className="input-edit"
             type="text"
             value={currentTodo.name}
             onChange={handleEditInputChange}

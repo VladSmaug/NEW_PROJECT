@@ -1,8 +1,9 @@
-import { React } from "react";
+import React, { useState } from "react";
 
 import { defaultTodo } from "../utils/constants";
 
-const Form = ({ setTodos, todos, setStatus, newTodo, setNewTodo }) => {
+const Form = ({ setTodos, todos, setStatus }) => {
+  const [newTodo, setNewTodo] = useState(defaultTodo);
   const inputTextHandler = (e) => {
     const value = e.target.value;
 
